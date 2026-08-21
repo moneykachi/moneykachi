@@ -1,143 +1,55 @@
-const { spawnSync, spawn } = require('child_process')
-const { existsSync, writeFileSync } = require('fs')
-const path = require('path')
+Hey, I'm Moses Obi
+Student, Developer AI & Cloud Enthusiast, Creative
 
-const =
-session id =
+I'm a student and tech enthusiast passionate about building useful digital products, exploring AI, and working with cloud technologies.
 
-function startNode() {
-  const child = spawn('node', ['index.js'], { cwd: 'levanter', stdio: 'inherit' })
+I enjoy turning ideas into real projects from web applications and AI-powered tools to creative digital experiences.
 
-  child.on('exit', (code) => {
-    if (code === 102) {
-      console.log('restarting...')
-      startNode()
-    }
-  })
-}
+About Me
 
-function startPm2() {
-  const pm2 = spawn('pm2', ['start', 'index.js', '--name', 'levanter', '--attach'], {
-    cwd: 'levanter',
-    stdio: ['pipe', 'pipe', 'pipe'],
-  })
+Student and aspiring technology professional
+Exploring Artificial Intelligence and Machine Learning
+Learning and building with Cloud Computing
+Building websites and applications
+Interested in DevOps, Cloud Engineering, AI Agents and Software Development
+Always learning and experimenting with new technologies
 
-  let restartCount = 0
-  const maxRestarts =20
-  pm2.on('exit', (code) => {
-    if (code !== 0) {
-      // console.log('pm2 failed to start, falling back to node...')
-      startNode()
-    }
-  })
+Tech Stack
 
-  pm2.on('error', (error) => {
-    // console.error(`pm2 error: ${error.message}`)
-    startNode()
-  })
+Development
 
-  // Check for infinite restarts
-  if (pm2.stderr) {
-    pm2.stderr.on('data', (data) => {
-      const output = data.toString()
-      if (output.includes('restart')) {
-        restartCount++
-        if (restartCount > maxRestarts) {
-          // console.log('pm2 is restarting indefinitely, stopping pm2 and starting node...')
-          spawnSync('pm2', ['delete', 'levanter'], { cwd: 'levanter', stdio: 'inherit' })
-          startNode()
-        }
-      }
-    })
-  }
+Cloud and Tools
 
-  if (pm2.stdout) {
-    pm2.stdout.on('data', (data) => {
-      const output = data.toString()
-      console.log(output)
-      if (output.includes('online')) {
-        // console.log('Application is online.')
-        restartCount = 0
-      }
-    })
-  }
-}
+Artificial Intelligence
 
-function installDependencies() {
-  console.log('Installing dependencies...')
-  const installResult = spawnSync(
-    'yarn',
-    ['install', '--force', '--non-interactive', '--network-concurrency', '3'],
-    {
-      cwd: 'levanter',
-      stdio: 'inherit',
-    }
-  )
+AI Agents
 
-  if (installResult.error) {
-    throw new Error(`Failed to install dependencies: ${installResult.error.message}`)
-  }
-}
+Machine Learning
 
-function checkDependencies() {
-  if (!existsSync(path.resolve('levanter/package.json'))) {
-    console.error('package.json not found!')
-    process.exit(1)
-  }
+Generative AI
 
-  const result = spawnSync('yarn', ['check', '--verify-tree'], { cwd: 'levanter', stdio: 'inherit' })
+AI APIs
 
-  // Check the exit code to determine if there was an error
-  if (result.status !== 0) {
-    // console.error('Some dependencies are missing or incorrectly installed.')
-    installDependencies()
-  } else {
-    // console.log('All dependencies are installed properly.')
-  }
-}
+Cloud AI Services
 
-function installDependencies() {
-  // console.log('Installing missing dependencies...')
-  const result = spawnSync('yarn', ['install'], { cwd: 'levanter', stdio: 'inherit' });
+Automation
 
-  if (result.status === 0) {
-    // console.log('Dependencies installed successfully.')
-  } else {
-    console.error('Failed to install dependencies.')
-    process.exit(1);
-  }
-}
+Currently Working On,
+Building and deploying web applications
+Exploring AI agents and automation
+Improving my cloud engineering skills
+Learning more about machine learning and AI
+Building projects that solve real-world problems
+Featured Projects
 
-function cloneRepository() {
-  console.log('Cloning the repository...')
-  const cloneResult = spawnSync(
-    'git',
-    ['clone', 'https://github.com/lyfe00011/levanter.git', 'levanter'],
-    {
-      stdio: 'inherit',
-    }
-  )
+Laija — Campus Platform
 
-  if (cloneResult.error) {
-    throw new Error(`Failed to clone the repository: ${cloneResult.error.message}`)
-  }
+A campus-focused digital platform designed to connect students with campus news, marketplace services, communication, payments and AI-powered assistance.
 
-  const configPath = 'levanter/config.env'
-  try {
-    console.log('Writing to config.env...')
-    writeFileSync(configPath, `VPS=true\nSESSION_ID=${SESSION_ID}`)
-  } catch (err) {
-    throw new Error(`Failed to write to config.env: ${err.message}`)
-  }
+Focus: Web Development, AI, Payments, Cloud, UX
 
-  installDependencies()
-}
+AI and Automation Projects
 
-if (!existsSync('levanter')) {
-  cloneRepository()
-  checkDependencies()
-} else {
-  checkDependencies()
-}
+Experimenting with AI assistants, bots, automation workflows and API integrations.
 
-startPm2()
+Focus: AI, APIs, Automation,Cloud
