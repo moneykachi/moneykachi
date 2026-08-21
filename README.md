@@ -1,5 +1,5 @@
 Hey, I'm Moses Obi
-Student, Developer AI & Cloud Enthusiast, Creative
+Student, Developer AI & Cloud Enthusiast
 
 I'm a student and tech enthusiast passionate about building useful digital products, exploring AI, and working with cloud technologies.
 
