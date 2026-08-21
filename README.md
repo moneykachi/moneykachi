@@ -42,7 +42,7 @@ Learning more about machine learning and AI
 Building projects that solve real-world problems
 Featured Projects
 
-Laija — Campus Platform
+Laija Campus Platform
 
 A campus-focused digital platform designed to connect students with campus news, marketplace services, communication, payments and AI-powered assistance.
 
